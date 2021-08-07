@@ -2,7 +2,7 @@
 from deadlineapi.Validation import _is_email, _is_twitter
 
 class Contact():
-    def __init__(self,jsonobj) -> None:
+    def __init__(self,jsonobj,ignoreValidationErrors=False) -> None:
 
         if 'email' in jsonobj:
 

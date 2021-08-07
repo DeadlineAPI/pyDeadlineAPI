@@ -25,7 +25,7 @@ setup(
     ],
     packages=["deadlineapi"],
     include_package_data=True,
-    install_requires=["jsonschema", "requests"],
+    install_requires=["jsonschema==3.0.1", "requests==2.21.0"],
     entry_points={
         "console_scripts": [
             "pyDeadlineAPI=deadlineapi.__main__:main",

@@ -1,6 +1,6 @@
 import unittest
 
-from test.testValidator0_1 import TestValidator0_1
+from tests.testValidation import TestValidation
 
 class TestMain(unittest.TestCase):
     def test_dummy(self):

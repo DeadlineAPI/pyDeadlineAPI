@@ -1,7 +1,7 @@
 
 
 class Location():
-    def __init__(self,jsonobj) -> None:
+    def __init__(self,jsonobj,ignoreValidationErrors=False) -> None:
 
         if 'virtual' in jsonobj:
             self.virtual = jsonobj['virtual']

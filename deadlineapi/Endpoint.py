@@ -5,7 +5,7 @@ from deadlineapi.Validation import _is_api_version
 from deadlineapi.Validation import _is_url
 
 class Endpoint():
-    def __init__(self,jsonobj) -> None:
+    def __init__(self,jsonobj,ignoreValidationErrors=False) -> None:
 
 
         if 'api' in jsonobj:
@@ -42,6 +42,6 @@ class Endpoint():
         self.deadlines = []
         if 'deadlines' in jsonobj:
             for i in jsonobj['deadlines']:
-                self.deadlines.append(DeadlineObj(i))
+                self.deadlines.append(DeadlineObj(i,ignoreValidationErrors))
 
 

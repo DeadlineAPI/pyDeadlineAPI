@@ -8,7 +8,7 @@ from deadlineapi.Validation import _is_url, _is_valid_date, _is_valid_deadline
 
 class DeadlineObj():
 
-    def __init__(self,jsonobj):
+    def __init__(self,jsonobj,ignoreValidationErrors=False):
         if 'name' in jsonobj:
             self.name = jsonobj['name']
         else:
@@ -20,12 +20,12 @@ class DeadlineObj():
                 self.categories.append(i)
 
         if 'location' in jsonobj:
-            self.location = Location(jsonobj['location'])
+            self.location = Location(jsonobj['location'],ignoreValidationErrors)
         else:
             raise Exception("location field is mandatory but not present!")
 
         if 'contact' in jsonobj:
-            self.contact = Contact(jsonobj['contact'])
+            self.contact = Contact(jsonobj['contact'],ignoreValidationErrors)
         else:
             raise Exception("contact field is mandatory but not present!")
         
