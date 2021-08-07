@@ -6,8 +6,7 @@ import logging
 import requests
 import jsonschema
 
-import api
-
+import deadlineapi
 
 
 VERSION_MAJOR = 0
