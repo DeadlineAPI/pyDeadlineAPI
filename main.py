@@ -31,11 +31,12 @@ logger.info("Running version " + VERSION)
 
 def main():
     directory = api.Loader.load_directory_by_url("https://directory.deadlineapi.org/directory.json")
-    endpoint = directory[0]
-    print(endpoint.api_compatibility)
-    for d in endpoint.deadlines:
-        print(d.name)
-
+    for endpoint in directory:
+        print(f"Endpoint is compatible to: {endpoint.api_compatibility}")
+        print(f"Deadlines provide by {endpoint.name}:")
+        for d in endpoint.deadlines:
+            print(f"{d.name}: {d.deadline}")
+        
 
 if __name__ == "__main__":
     main()
