@@ -28,13 +28,27 @@ class Endpoint():
             raise Exception("endpointname field is mandatory but not present!")
 
         if 'endpointurl' in jsonobj:
-            _is_url(jsonobj['endpointurl'])
+            try:
+                _is_url(jsonobj['endpointurl'])
+            except Exception as e:
+                if ignoreValidationErrors:
+                    pass
+                else:
+                    raise e
+
             self.endpointurl = jsonobj['endpointurl']
         else:
             self.endpointurl = None
 
         if 'endpointlogo' in jsonobj:
-            _is_url(jsonobj['endpointlogo'])
+            try:
+                _is_url(jsonobj['endpointlogo'])
+            except Exception as e:
+                if ignoreValidationErrors:
+                    pass
+                else:
+                    raise e
+                    
             self.endpointlogo = jsonobj['endpointlogo']
         else:
             self.endpointlogo = None
@@ -43,5 +57,3 @@ class Endpoint():
         if 'deadlines' in jsonobj:
             for i in jsonobj['deadlines']:
                 self.deadlines.append(DeadlineObj(i,ignoreValidationErrors))
-
-

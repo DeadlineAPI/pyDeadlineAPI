@@ -43,23 +43,56 @@ class DeadlineObj():
 
         if 'shortname' in jsonobj:
             self.shortname = jsonobj['shortname']
+        else:
+            self.shortname = None
 
         if 'logo' in jsonobj:
-            _is_url(jsonobj['logo'])
+            try:
+                _is_url(jsonobj['logo'])
+            except Exception as e:
+                if ignoreValidationErrors:
+                    pass
+                else:
+                    raise e
+
             self.logo = jsonobj['logo']
+        else:
+            self.logo = None
 
         if 'cfpurl' in jsonobj:
-            _is_url(jsonobj['cfpurl'])
+            try:
+                _is_url(jsonobj['cfpurl'])
+            except Exception as e:
+                if ignoreValidationErrors:
+                    pass
+                else:
+                    raise e
+
             self.cfpurl = jsonobj['cfpurl']
+        else:
+            self.cfpurl = None
 
         if 'confurl' in jsonobj:
-            _is_url(jsonobj['confurl'])
+            try:
+                _is_url(jsonobj['confurl'])
+            except Exception as e:
+                if ignoreValidationErrors:
+                    pass
+                else:
+                    raise e
+
             self.confurl = jsonobj['confurl']
+        else:
+            self.confurl = None
 
         if 'enddate' in jsonobj:
             _is_valid_date(jsonobj['enddate'])
             self.enddate = jsonobj['enddate']
+        else:
+            self.enddate = None
 
         if 'pagelimit' in jsonobj:
             self.pagelimit = int(jsonobj['pagelimit'])
+        else:
+            self.pagelimit = None
 
