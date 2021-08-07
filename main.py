@@ -6,7 +6,7 @@ import logging
 import requests
 import jsonschema
 
-from validators.Validator import Validator0_1 
+import api
 
 
 
@@ -30,13 +30,11 @@ logger.info("Running version " + VERSION)
 
 
 def main():
-    validator = Validator0_1()
-    try:
-        validator.validate(open(os.path.join("test","test01.json"),'r').read())
-        logger.info("Validation passed!")
-    except:
-        logger.info("Validation failed!")
-
+    directory = api.Loader.load_directory_by_url("https://directory.deadlineapi.org/directory.json")
+    endpoint = directory[0]
+    print(endpoint.api_compatibility)
+    for d in endpoint.deadlines:
+        print(d.name)
 
 
 if __name__ == "__main__":
