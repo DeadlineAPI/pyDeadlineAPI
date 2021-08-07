@@ -2,9 +2,9 @@
 
 
 
-from api.Contact import Contact
-from api.Location import Location
-from api.Validation import _is_url, _is_valid_date, _is_valid_deadline
+from deadlineapi.Contact import Contact
+from deadlineapi.Location import Location
+from deadlineapi.Validation import _is_url, _is_valid_date, _is_valid_deadline
 
 class DeadlineObj():
 

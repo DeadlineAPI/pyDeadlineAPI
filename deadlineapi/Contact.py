@@ -1,5 +1,5 @@
 
-from .Validation import _is_email, _is_twitter
+from deadlineapi.Validation import _is_email, _is_twitter
 
 class Contact():
     def __init__(self,jsonobj) -> None:

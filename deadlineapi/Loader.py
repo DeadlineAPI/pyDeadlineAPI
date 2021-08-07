@@ -3,12 +3,12 @@ import json
 import requests
 import os
 
-import api.Endpoint
-from api.Validation import _is_valid_schema_by_jsonobj,_is_url
+import deadlineapi.Endpoint
+from deadlineapi.Validation import _is_valid_schema_by_jsonobj,_is_url
 
 def load_endpoint_by_json(jsonobj):
     _is_valid_schema_by_jsonobj(jsonobj)
-    return api.Endpoint(jsonobj)
+    return deadlineapi.Endpoint(jsonobj)
 
 def load_endpoint_by_string(s):
     jsonobj = json.loads(s)

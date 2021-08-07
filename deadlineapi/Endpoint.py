@@ -1,8 +1,8 @@
 
 
-from api.DeadlineObject import DeadlineObj
-from api.Validation import _is_api_version
-from api.Validation import _is_url
+from deadlineapi.DeadlineObject import DeadlineObj
+from deadlineapi.Validation import _is_api_version
+from deadlineapi.Validation import _is_url
 
 class Endpoint():
     def __init__(self,jsonobj) -> None:
