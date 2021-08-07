@@ -23,6 +23,7 @@ class Endpoint():
 
         if 'endpointname' in jsonobj:
             self.endpointname = jsonobj['endpointname']
+            self.name = self.endpointname
         else:
             raise Exception("endpointname field is mandatory but not present!")
 
