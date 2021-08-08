@@ -96,3 +96,27 @@ class DeadlineObj():
         else:
             self.pagelimit = None
 
+    def days_left(self) -> int:
+        # TODO
+        pass
+
+    def hours_left(self) -> int:
+        # TODO
+        pass
+
+    def minutes_left(self) -> int:
+        # TODO
+        pass
+
+    def seconds_left(self) -> int:
+        # TODO
+        pass
+
+    def countdown(self) -> str:
+        # TODO
+        pass
+
+    def timediff(self):
+        # TODO
+        pass
+

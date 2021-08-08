@@ -24,24 +24,24 @@ Loading a directory is easy. You can use the following code to load the default 
 
 ```python
 import deadlineapi
-directory = deadlineapi.Loader.load_directory_by_url()
+directory = deadlineapi.Loader.load_directory_by_url(loadDirectly=True)
 ```
 
 Alternatively you can load from a specific url, a string or a local file on your computer/server:
 ```python
 import deadlineapi
-deadlineapi.Loader.load_directory_by_url("https://directory.deadlineapi.org/directory.json")
-deadlineapi.Loader.load_directory_by_string("{ "endpointname": "url" }")
-deadlineapi.Loader.load_directory_by_path(os.path.join('my","path"))
+deadlineapi.Loader.load_directory_by_url("https://directory.deadlineapi.org/directory.json",loadDirectly=True)
+deadlineapi.Loader.load_directory_by_string("{ "endpointname": "url" }",loadDirectly=True)
+deadlineapi.Loader.load_directory_by_path(os.path.join("my","path"),loadDirectly=True)
 ```
 
-The loader will provide you with a list of [Endpoints](Endpoints).
+The `loadDirectly=True` (default) makes sure that the endpoints get loaded directly and provides you with a list of [Endpoints](Endpoints). This may take some time. You can also set `loadDirectly=False`. In this case you will get a list of [DirectoryItem](DirectoryItem)s instead. You can use `endpoint = directoryitem.load()` to load the endpoint afterwards. 
 
 ### Endpoints
 Endpoints represent the endpoints of the api. You can use all the fields specified in the JSON schema. E.g.:
 ```python
 import deadlineapi
-directory = deadlineapi.Loader.load_directory_by_url()
+directory = deadlineapi.Loader.load_directory_by_url(loadDirectly=True)
 for endpoint in directory:
     print(f"Endpoint is compatible to: {endpoint.api_compatibility}")
     print(f"Deadlines provide by {endpoint.name}:")
@@ -49,14 +49,14 @@ for endpoint in directory:
         print(f"{d.name}: {d.deadline}")
 ```
 
-Note that `endpoint.name` is an alias for `endpoint.endpointname`. In the following table we list all the functionality that is on top of the API fields.
+
+In the following table we list all the functionality that is on top of the API fields.
 
 
 | Name                   | Description                                           |
 | ---------------------- | ----------------------------------------------------- |
-| `name`                 | Alias for `endpointname`                              |
-| `loadedFrom`           | Only set if loaded via directory. Contains loaded url, where it was loaded from |
-| `directoryName`        | Only set if loaded via directory, Contains loaded the name, as given in the directory |
+| `endpointname`         | key in the directory file                             |
+| `endpointurl`          | value (url) in the directory file                     |
 
 Note further that you can also load endpoints directly. E.g. 
 ```python
@@ -67,6 +67,18 @@ deadlineapi.Loader.load_endpoint_by_url(url)
 ```
 
 Endpoints get automatically validated against the [JSON schema](https://schema.deadlineapi.org/) and other requirements, like url in url field, emails in email field and so on. If you think that something is wrong with the schema files please discuss in the [schema repository](https://github.com/DeadlineAPI/Schema).
+
+
+### DirectoryItem
+A DirectoryItem is simple the representation of a key-value pair of the directory. It only hast two fields:
+
+| Name                   | Description                                           |
+| ---------------------- | ----------------------------------------------------- |
+| `endpointname`         | key in the directory file                             |
+| `endpointurl`          | value (url) in the directory file                     |
+
+You can use `endpoint = directoryitem.load()` to load it and turn it into an [Endpoint](Endpoint) with all the deadline and fields attached. This will also set `endpointname` and `endpointurl` in the Endpoint object.
+
 
 ### DeadlineObject
 The DeadlineObject correspond to the individual deadlines. They also got all field provided by API. 
@@ -87,7 +99,7 @@ Note the DeadlineObject also provides some additional functionality:
 |  `hours_left()`        | How many (full) hours are left until the deadline.        |
 |  `minutes_left()`      | How many (full) minutes are left until the deadline.      |
 |  `countdown()`         | How much time is left in a useful format (string)         |
-|  `time_left()`         | Provides the time diff as python object                   |
+|  `timediff()`         | Provides the time diff as python object                   |
 
 ### Location
 This class just wraps the location. It provides the following additional methods:
