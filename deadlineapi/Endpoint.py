@@ -5,8 +5,10 @@ from deadlineapi.Validation import _is_api_version
 from deadlineapi.Validation import _is_url
 
 class Endpoint():
-    def __init__(self,jsonobj,ignoreValidationErrors=False) -> None:
+    def __init__(self,jsonobj,endpointname=None,endpointurl=None,ignoreValidationErrors=False) -> None:
 
+        self.endpointname = endpointname
+        self.endpointurl = endpointurl
 
         if 'api' in jsonobj:
             _is_api_version(jsonobj['api'])
@@ -20,38 +22,36 @@ class Endpoint():
                 _is_api_version(jsonobj['api'])
                 self.api_compatibility.append(i)
 
-
-        if 'endpointname' in jsonobj:
-            self.endpointname = jsonobj['endpointname']
-            self.name = self.endpointname
+        if 'name' in jsonobj:
+            self.name = jsonobj['name']
         else:
-            raise Exception("endpointname field is mandatory but not present!")
+            raise Exception("name field is mandatory but not present!")
 
-        if 'endpointurl' in jsonobj:
+        if 'url' in jsonobj:
             try:
-                _is_url(jsonobj['endpointurl'])
+                _is_url(jsonobj['url'])
             except Exception as e:
                 if ignoreValidationErrors:
                     pass
                 else:
                     raise e
 
-            self.endpointurl = jsonobj['endpointurl']
+            self.url = jsonobj['url']
         else:
-            self.endpointurl = None
+            self.url = None
 
-        if 'endpointlogo' in jsonobj:
+        if 'logo' in jsonobj:
             try:
-                _is_url(jsonobj['endpointlogo'])
+                _is_url(jsonobj['logo'])
             except Exception as e:
                 if ignoreValidationErrors:
                     pass
                 else:
                     raise e
                     
-            self.endpointlogo = jsonobj['endpointlogo']
+            self.logo = jsonobj['logo']
         else:
-            self.endpointlogo = None
+            self.logo = None
 
         self.deadlines = []
         if 'deadlines' in jsonobj:

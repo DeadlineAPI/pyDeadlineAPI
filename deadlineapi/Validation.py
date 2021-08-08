@@ -54,15 +54,15 @@ schema = json.loads("""{
                 "const": "0.1"
             }
         },
-        "endpointname": {
+        "name": {
             "description": "The name of your endpoint",
             "type": "string"
         },
-        "endpointurl": {
+        "url": {
             "description": "The URL of your endpoint",
             "type": "string"
         },
-        "endpointlogo": {
+        "logo": {
             "description": "URL to your endpoint logo",
             "type": "string"
         },

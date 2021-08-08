@@ -1,7 +1,7 @@
 { 
     "api": "0.1",
     "api_compatibility": ["0.1"],
-    "endpointname": "Testendpoint",
+    "name": "Testendpoint",
     "deadlines": [
         {
           "name": "ACM CCS 2021 A",
