@@ -31,14 +31,14 @@ def load_endpoint_by_url(url,endpointname=None,endpointurl=None,ignoreValidation
 
 DEFAULT_DIRECTORY_URL = "https://directory.deadlineapi.org/directory.json"
 
-def load_directory_by_string(s,loadDirectly=True,failOnLoadingError=False,ignoreValidationErrors=False):
+def load_directory_by_string(s,loadDirectly=True,failOnLoadingError=True,ignoreValidationErrors=False):
     directory = json.loads(s)
 
     if loadDirectly:
         # Directly load Endpoints. This may take some time
         endpoints = []
         for k in directory:
-            print(f"Loading endpoint {k} with url {directory[k]}")
+            #print(f"Loading endpoint {k} with url {directory[k]}")
             try:
                 endpoints.append(load_endpoint_by_url(directory[k],ignoreValidationErrors))
             except Exception as e:
