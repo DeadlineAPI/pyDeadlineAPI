@@ -32,3 +32,8 @@ class Location():
         else:
             self.lon = None
         
+    def to_str(self) -> str:
+        if self.virtual:
+            return "Virtual"
+        else:
+            return f"{self.country}, {self.city}"
